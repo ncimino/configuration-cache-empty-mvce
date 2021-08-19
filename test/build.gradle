@@ -1,0 +1,11 @@
+
+plugins {
+    id 'base'
+}
+
+task exampleTask {
+    logger.info("config msg")
+    doLast {
+        logger.info("exec msg")
+    }
+}

@@ -1,0 +1,39 @@
+
+plugins {
+    id 'base'
+}
+apply plugin: com.company.greeting.GreetingPlugin
+
+// Configure the extension using a DSL block
+greeting {
+    message = 'Hi'
+    greeter = 'Gradle'
+}
+
+import org.gradle.testkit.runner.GradleRunner
+
+task runExample
+runExample.dependsOn hello
+runExample.doLast {
+    //GradleRunner runner = 
+    GradleRunner.create()
+            .withProjectDir(project.file("./test"))
+            .withArguments(["clean", "exampleTask"])
+            .withTestKitDir(project.file("./testkit"))
+            .withDebug(true)
+            //.withPluginClasspath()
+
+    //BuildResult result =
+    //runner
+        .forwardOutput()
+        .build()
+
+    //assert result.status 
+}
+
+dependencies {
+    implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.codehaus.groovy:groovy-all:3.0.3'
+    testImplementation 'org.spockframework:spock-core:1.3-groovy-2.5'
+}
